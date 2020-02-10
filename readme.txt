@@ -1,0 +1,1 @@
+This is the bookdown for generating the book of R examples at benstanbury.github.io/R_examples

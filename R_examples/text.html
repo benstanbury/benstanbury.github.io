@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Text | R Examples</title>
+  <meta name="description" content="Sharing useful code for reuse." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Text | R Examples" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sharing useful code for reuse." />
+  <meta name="github-repo" content="benstanbury/benstanbury.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Text | R Examples" />
+  
+  <meta name="twitter:description" content="Sharing useful code for reuse." />
+  
+
+<meta name="author" content="Ben Stanbury" />
+
+
+<meta name="date" content="2020-02-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualisation.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Examples</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>2</b> Processing</a></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis (EDA)</a></li>
+<li class="chapter" data-level="4" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>4</b> Modelling</a></li>
+<li class="chapter" data-level="5" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>5</b> Data Visualisation</a></li>
+<li class="chapter" data-level="6" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>6</b> Text</a><ul>
+<li class="chapter" data-level="6.1" data-path="text.html"><a href="text.html#regular-expressions"><i class="fa fa-check"></i><b>6.1</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="text.html"><a href="text.html#key-packages"><i class="fa fa-check"></i><b>6.1.1</b> Key Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="text.html"><a href="text.html#example-use-case"><i class="fa fa-check"></i><b>6.1.2</b> Example Use case</a></li>
+<li class="chapter" data-level="6.1.3" data-path="text.html"><a href="text.html#practice-data-set"><i class="fa fa-check"></i><b>6.1.3</b> Practice data set</a></li>
+<li class="chapter" data-level="6.1.4" data-path="text.html"><a href="text.html#extracting-postcodes"><i class="fa fa-check"></i><b>6.1.4</b> Extracting Postcodes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="text.html"><a href="text.html#entity-extraction"><i class="fa fa-check"></i><b>6.2</b> Entity Extraction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Examples</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="text" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Text</h1>
+<div id="regular-expressions" class="section level2">
+<h2><span class="header-section-number">6.1</span> Regular Expressions</h2>
+<p><a href="https://en.wikipedia.org/wiki/Regular_expression">Regular expressions</a> are sequences of characters that define a search pattern. They describe sets of characters using syntactic rules.</p>
+<div id="key-packages" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Key Packages</h3>
+<p>Two of the most popular packages are <a href="https://github.com/tidyverse/stringr">stringr</a> and <a href="https://github.com/gagolews/stringi">stringi</a>. These two packages are syntactically similar. <em>stringr</em> is part of Hadley Wickham’s tidyverse set of packages, providing a series of functions for string manipulation. <em>stringr</em> is largerly a wrapper package for <em>stringi</em>, the latter providing a wider range of functions.</p>
+</div>
+<div id="example-use-case" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Example Use case</h3>
+<p>A data scientist may wish to extract all the postcodes from a series of documents stored in a data frame and collect them into a new column for further analysis.</p>
+</div>
+<div id="practice-data-set" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Practice data set</h3>
+<p>Let’s create our own toy data set.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(stringr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(DT)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#Create some vectors to put into a dataframe</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;The Queen&quot;</span>, <span class="st">&quot;The Prime Minister&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">address &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Buckingham Palace, Westminster, London, SW1A 1AA&quot;</span>,</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">             <span class="st">&quot;10 Downing Street, London, SW1A 2AA&quot;</span>)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#Put the vectors together in a dataframe</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">toy_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(id, name, address)</a></code></pre></div>
+<p>We should take a quick look at the data to check it looks okay.
+<div id="htmlwidget-42224f3a83f25dd939bc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-42224f3a83f25dd939bc">{"x":{"filter":"none","data":[["1","2"],[1,2],["The Queen","The Prime Minister"],["Buckingham Palace, Westminster, London, SW1A 1AA","10 Downing Street, London, SW1A 2AA"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+</div>
+<div id="extracting-postcodes" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Extracting Postcodes</h3>
+<p>Next we run a regular expression over the address field and add a new column with any postcodes found. This string match will be perfromed using the <em>str_extract_all</em> function from the stringr package. This will extract <strong>all</strong> the postcodes into a list. If we instead wanted to extract the <strong>first</strong> result then we would instead use *str_extract. Either work fine in this simple case.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">new_toy_df &lt;-<span class="st"> </span>toy_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">postcode =</span> <span class="kw">str_extract_all</span>(address, <span class="dt">pattern =</span> <span class="st">&quot;([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))</span><span class="ch">\\</span><span class="st">s?[0-9][A-Za-z]{2})&quot;</span>)) </a></code></pre></div>
+<p>Let’s take a look at the final output.</p>
+<div id="htmlwidget-264d1c47d982253b2f97" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-264d1c47d982253b2f97">{"x":{"filter":"none","data":[["1","2"],[1,2],["The Queen","The Prime Minister"],["Buckingham Palace, Westminster, London, SW1A 1AA","10 Downing Street, London, SW1A 2AA"],["SW1A 1AA","SW1A 2AA"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n      <th>postcode<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="entity-extraction" class="section level2">
+<h2><span class="header-section-number">6.2</span> Entity Extraction</h2>
+<p>To follow.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-text.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R Examples Book.pdf", "R Examples Book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
