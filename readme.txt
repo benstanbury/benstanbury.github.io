@@ -1,1 +1,1 @@
-This is the bookdown for generating the book of R examples at [benstanbury.github.io/R_examples](benstanbury.github.io/R_examples)
+This is the bookdown for generating the book of R examples at (benstanbury.github.io/R_examples)
