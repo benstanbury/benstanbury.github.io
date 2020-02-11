@@ -24,7 +24,7 @@
 <meta name="author" content="Ben Stanbury" />
 
 
-<meta name="date" content="2020-02-10" />
+<meta name="date" content="2020-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,6 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.4" data-path="text.html"><a href="text.html#extracting-postcodes"><i class="fa fa-check"></i><b>6.1.4</b> Extracting Postcodes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="text.html"><a href="text.html#entity-extraction"><i class="fa fa-check"></i><b>6.2</b> Entity Extraction</a></li>
+<li class="chapter" data-level="6.3" data-path="text.html"><a href="text.html#to-add"><i class="fa fa-check"></i><b>6.3</b> To add</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -192,15 +193,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s create our own toy data set.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#Create some vectors to put into a dataframe</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;The Queen&quot;</span>, <span class="st">&quot;The Prime Minister&quot;</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">address &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Buckingham Palace, Westminster, London, SW1A 1AA&quot;</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">             <span class="st">&quot;10 Downing Street, London, SW1A 2AA&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Harry Potter&quot;</span>, <span class="st">&quot;Ken Barlow&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">address &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;4 Privet Drive, Little Whinging, Surrey WD25 7LR&quot;</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">             <span class="st">&quot;Coronation Street, Manchester, M17 1FZ&quot;</span>)</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#Put the vectors together in a dataframe</span></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">toy_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(id, name, address)</a></code></pre></div>
 <p>We should take a quick look at the data to check it looks okay.
-<div id="htmlwidget-cfdedd333eb4690834f9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cfdedd333eb4690834f9">{"x":{"filter":"none","data":[["1","2"],[1,2],["The Queen","The Prime Minister"],["Buckingham Palace, Westminster, London, SW1A 1AA","10 Downing Street, London, SW1A 2AA"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+<div id="htmlwidget-51b1b3b7eb69f6048335" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-51b1b3b7eb69f6048335">{"x":{"filter":"none","data":[["1","2"],[1,2],["Harry Potter","Ken Barlow"],["4 Privet Drive, Little Whinging, Surrey WD25 7LR","Coronation Street, Manchester, M17 1FZ"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
 </div>
 <div id="extracting-postcodes" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Extracting Postcodes</h3>
@@ -211,13 +212,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-4" data-line-number="4">new_toy_df &lt;-<span class="st"> </span>toy_df <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">postcode =</span> <span class="kw">str_extract_all</span>(address, <span class="dt">pattern =</span> <span class="st">&quot;([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))</span><span class="ch">\\</span><span class="st">s?[0-9][A-Za-z]{2})&quot;</span>)) </a></code></pre></div>
 <p>Let’s take a look at the final output.</p>
-<div id="htmlwidget-53a34baab2f9a836a620" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53a34baab2f9a836a620">{"x":{"filter":"none","data":[["1","2"],[1,2],["The Queen","The Prime Minister"],["Buckingham Palace, Westminster, London, SW1A 1AA","10 Downing Street, London, SW1A 2AA"],["SW1A 1AA","SW1A 2AA"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n      <th>postcode<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-aa7fbbb8efaa533572f9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aa7fbbb8efaa533572f9">{"x":{"filter":"none","data":[["1","2"],[1,2],["Harry Potter","Ken Barlow"],["4 Privet Drive, Little Whinging, Surrey WD25 7LR","Coronation Street, Manchester, M17 1FZ"],["WD25 7LR","M17 1FZ"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>name<\/th>\n      <th>address<\/th>\n      <th>postcode<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="entity-extraction" class="section level2">
 <h2><span class="header-section-number">6.2</span> Entity Extraction</h2>
 <p>To follow.</p>
+</div>
+<div id="to-add" class="section level2">
+<h2><span class="header-section-number">6.3</span> To add</h2>
+<ul>
+<li>Version number.</li>
+<li>What does the postcode cover? e.g. Armed Forces, Islands.</li>
+<li>Anti-pattern - what is it not appropriate for?</li>
+</ul>
 
 </div>
 </div>
